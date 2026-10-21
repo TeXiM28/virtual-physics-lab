@@ -1,0 +1,24 @@
+# Окружение
+venv/
+.venv/
+env/
+
+# Кэш Python
+__pycache__/
+*.pyc
+
+# Сборка PyInstaller
+build/
+dist/
+*.spec
+
+# Исполняемые файлы (не храним .exe в Git)
+*.exe
+
+# Настройки редакторов
+.vscode/
+.idea/
+
+# Файлы базы данных
+*.db
+*.sqlite
