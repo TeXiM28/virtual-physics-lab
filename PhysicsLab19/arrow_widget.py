@@ -1,0 +1,102 @@
+import math
+import random
+from PyQt6.QtWidgets import QWidget
+from PyQt6.QtGui import QPainter, QPen, QColor, QFont, QBrush
+
+class ArrowInstrument(QWidget):
+    def __init__(self, name="Микроамперметр", unit="мкА", max_val=60.0, accuracy_class=1.5):
+        super().__init__()
+        self.name = name
+        self.unit = unit
+        self.max_val = max_val
+        self.accuracy_class = accuracy_class
+        self.real_value = 0.0          
+        self.displayed_value = 0.0     
+        
+        # Уменьшаем минимальный размер виджета, чтобы он идеально влезал в поле
+        self.setMinimumSize(180, 180)
+        
+    def set_value(self, val):
+        self.real_value = max(0.0, min(val, self.max_val))
+        if self.real_value > 0:
+            max_error = (self.accuracy_class / 100.0) * self.max_val
+            error = random.uniform(-max_error, max_error)
+            self.displayed_value = max(0.0, min(self.real_value + error, self.max_val))
+        else:
+            self.displayed_value = 0.0
+        self.update()
+
+    def paintEvent(self, event):
+        painter = QPainter(self)
+        painter.setRenderHint(QPainter.RenderHint.Antialiasing)
+        
+        # 1. Белый фон корпуса прибора (с небольшим отступом)
+        painter.setBrush(QColor("#FFFFFF"))
+        painter.setPen(QPen(QColor("#2B2B2B"), 2))
+        painter.drawRect(5, 5, self.width() - 10, self.height() - 10)
+        
+        # 2. Динамический расчет центра и радиуса (шкала станет меньше и влезет внутрь)
+        cx = self.width() // 2
+        cy = self.height() - 65  # Поднимаем центр выше, чтобы снизу влез дисплей
+        r = int(min(self.width(), self.height()) * 0.38) # Уменьшенный коэффициент радиуса
+        
+        # 3. Отрисовка дуги шкалы
+        painter.setPen(QPen(QColor("#000000"), 2))
+        painter.drawArc(cx - r, cy - r, r * 2, r * 2, 0 * 16, 180 * 16)
+        
+        # 4. Добавление цифровой шкалы и основных делений (0, 20, 40, 60 мкА)
+        ticks = [0, 20, 40, 60]
+        painter.setFont(QFont("Arial", 8))
+        
+        for tick in ticks:
+            # Вычисляем угол для каждого деления шкалы
+            tick_angle = 180.0 - (tick / self.max_val) * 180.0
+            tick_rad = math.radians(tick_angle)
+            
+            # Координаты черточки деления
+            x_start = cx + r * math.cos(tick_rad)
+            y_start = cy - r * math.sin(tick_rad)
+            x_end = cx + (r - 8) * math.cos(tick_rad)
+            y_end = cy - (r - 8) * math.sin(tick_rad)
+            
+            painter.setPen(QPen(QColor("#000000"), 1.5))
+            painter.drawLine(int(x_start), int(y_start), int(x_end), int(y_end))
+            
+            # Координаты для текста цифр
+            x_text = cx + (r - 20) * math.cos(tick_rad) - 7
+            y_text = cy - (r - 20) * math.sin(tick_rad) + 4
+            painter.drawText(int(x_text), int(y_text), str(tick))
+            
+        # 5. Отрисовка тонкой красной измерительной стрелки
+        angle_deg = 180.0 - (self.displayed_value / self.max_val) * 180.0
+        angle_rad = math.radians(angle_deg)
+        ax = cx + (r - 5) * math.cos(angle_rad)
+        ay = cy - (r - 5) * math.sin(angle_rad)
+        
+        painter.setPen(QPen(QColor("#E74C3C"), 2)) 
+        painter.drawLine(cx, cy, int(ax), int(ay))
+        
+        # Маленький черный шарнир в центре стрелки
+        painter.setBrush(QColor("#000000"))
+        painter.setPen(QPen(QColor("#000000"), 1))
+        painter.drawEllipse(cx - 4, cy - 4, 8, 8)
+        
+        # 6. ВСТРОЕННЫЙ ЦИФРОВОЙ ЖК-ДИСПЛЕЙ (в нижней части прибора)
+        # Рамка дисплея
+        painter.setBrush(QColor("#2C3E50"))
+        painter.drawRect(cx - 45, cy + 15, 90, 25)
+        # Зеленый экран
+        painter.setBrush(QColor("#A9DFBF"))
+        painter.drawRect(cx - 41, cy + 18, 82, 19)
+        # Вывод точного значения на дисплей
+        painter.setPen(QPen(QColor("#000000"), 1))
+        painter.setFont(QFont("Courier New", 10, QFont.Weight.Bold))
+        painter.drawText(cx - 36, cy + 32, f"{self.displayed_value:05.2f}")
+        
+        # 7. Текстовые подписи прибора
+        painter.setPen(QPen(QColor("#000000"), 1))
+        painter.setFont(QFont("Arial", 9, QFont.Weight.Bold))
+        painter.drawText(cx - 55, cy + 55, f"{self.name} ({self.unit})")
+        
+        painter.setFont(QFont("Arial", 7))
+        painter.drawText(12, 20, f"Кл. точн. {self.accuracy_class}")

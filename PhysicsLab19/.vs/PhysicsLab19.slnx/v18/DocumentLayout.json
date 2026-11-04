@@ -1,0 +1,141 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\user\\Desktop\\PhysicsLab19\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{9A041086-7419-40BF-8605-81DB2BD07422}|PhysicsLab19.pyproj|C:\\Users\\user\\Desktop\\PhysicsLab19\\solenoid_widget.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{9A041086-7419-40BF-8605-81DB2BD07422}|PhysicsLab19.pyproj|solutionrelative:solenoid_widget.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A041086-7419-40BF-8605-81DB2BD07422}|PhysicsLab19.pyproj|C:\\Users\\user\\Desktop\\PhysicsLab19\\main.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{9A041086-7419-40BF-8605-81DB2BD07422}|PhysicsLab19.pyproj|solutionrelative:main.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A041086-7419-40BF-8605-81DB2BD07422}|PhysicsLab19.pyproj|C:\\Users\\user\\Desktop\\PhysicsLab19\\arrow_widget.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{9A041086-7419-40BF-8605-81DB2BD07422}|PhysicsLab19.pyproj|solutionrelative:arrow_widget.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A041086-7419-40BF-8605-81DB2BD07422}|PhysicsLab19.pyproj|C:\\Users\\user\\Desktop\\PhysicsLab19\\rheostat_widget.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{9A041086-7419-40BF-8605-81DB2BD07422}|PhysicsLab19.pyproj|solutionrelative:rheostat_widget.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A041086-7419-40BF-8605-81DB2BD07422}|PhysicsLab19.pyproj|C:\\Users\\user\\Desktop\\PhysicsLab19\\physics.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{9A041086-7419-40BF-8605-81DB2BD07422}|PhysicsLab19.pyproj|solutionrelative:physics.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A041086-7419-40BF-8605-81DB2BD07422}|PhysicsLab19.pyproj|C:\\Users\\user\\Desktop\\PhysicsLab19\\PhysicsLab19.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{9A041086-7419-40BF-8605-81DB2BD07422}|PhysicsLab19.pyproj|solutionrelative:PhysicsLab19.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A041086-7419-40BF-8605-81DB2BD07422}|PhysicsLab19.pyproj|C:\\Users\\user\\Desktop\\PhysicsLab19\\digital_widget.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{9A041086-7419-40BF-8605-81DB2BD07422}|PhysicsLab19.pyproj|solutionrelative:digital_widget.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "solenoid_widget.py",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\PhysicsLab19\\solenoid_widget.py",
+              "RelativeDocumentMoniker": "solenoid_widget.py",
+              "ToolTip": "C:\\Users\\user\\Desktop\\PhysicsLab19\\solenoid_widget.py",
+              "RelativeToolTip": "solenoid_widget.py",
+              "ViewState": "AgIAADEAAAAAAAAAAAAAADcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2026-11-03T14:02:43.908Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "rheostat_widget.py",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\PhysicsLab19\\rheostat_widget.py",
+              "RelativeDocumentMoniker": "rheostat_widget.py",
+              "ToolTip": "C:\\Users\\user\\Desktop\\PhysicsLab19\\rheostat_widget.py",
+              "RelativeToolTip": "rheostat_widget.py",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2026-11-03T14:02:10.308Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "digital_widget.py",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\PhysicsLab19\\digital_widget.py",
+              "RelativeDocumentMoniker": "digital_widget.py",
+              "ToolTip": "C:\\Users\\user\\Desktop\\PhysicsLab19\\digital_widget.py",
+              "RelativeToolTip": "digital_widget.py",
+              "ViewState": "AgIAABgAAAAAAAAAAAAuwCMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2026-10-16T12:43:01.955Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "arrow_widget.py",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\PhysicsLab19\\arrow_widget.py",
+              "RelativeDocumentMoniker": "arrow_widget.py",
+              "ToolTip": "C:\\Users\\user\\Desktop\\PhysicsLab19\\arrow_widget.py",
+              "RelativeToolTip": "arrow_widget.py",
+              "ViewState": "AgIAAFEAAAAAAAAAAAAIwGYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2026-10-16T12:41:34.333Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "main.py",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\PhysicsLab19\\main.py",
+              "RelativeDocumentMoniker": "main.py",
+              "ToolTip": "C:\\Users\\user\\Desktop\\PhysicsLab19\\main.py",
+              "RelativeToolTip": "main.py",
+              "ViewState": "AgIAAK8AAAAAAAAAAAAIwL4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2026-10-16T12:40:38.851Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "physics.py",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\PhysicsLab19\\physics.py",
+              "RelativeDocumentMoniker": "physics.py",
+              "ToolTip": "C:\\Users\\user\\Desktop\\PhysicsLab19\\physics.py",
+              "RelativeToolTip": "physics.py",
+              "ViewState": "AgIAACIAAAAAAAAAAAAuwC0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2026-10-16T12:40:00.67Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "PhysicsLab19.py",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\PhysicsLab19\\PhysicsLab19.py",
+              "RelativeDocumentMoniker": "PhysicsLab19.py",
+              "ToolTip": "C:\\Users\\user\\Desktop\\PhysicsLab19\\PhysicsLab19.py",
+              "RelativeToolTip": "PhysicsLab19.py",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2026-10-16T12:25:30.512Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
