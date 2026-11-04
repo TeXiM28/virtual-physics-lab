@@ -41,14 +41,14 @@ class VirtualLabStand(QMainWindow):
         stand_layout.addLayout(keys_layout)
         
         wiring_row_layout = QHBoxLayout()
-        self.rheostat_ua = VirtualRheostat("Реостат анода U_a", min_val=10, max_val=50, start_val=30)
+        self.rheostat_ua = VirtualRheostat("Реостат анода U_a", min_val=0, max_val=80, start_val=80)
         self.rheostat_ua.valueChanged.connect(self.sync_simulation)
         wiring_row_layout.addWidget(self.rheostat_ua)
         
         self.solenoid_visual = VirtualSolenoid()
         wiring_row_layout.addWidget(self.solenoid_visual)
         
-        self.ammeter_anode = ArrowInstrument("Анодный ток (I_a)", "мкА", max_val=60.0)
+        self.ammeter_anode = ArrowInstrument("Анодный ток (I_a)", "мкА", max_val=1000.0)
         wiring_row_layout.addWidget(self.ammeter_anode)
         
         self.rheostat_ic = VirtualRheostat("Реостат катушки I_c", min_val=0, max_val=200, start_val=0)
