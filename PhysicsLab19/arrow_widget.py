@@ -41,27 +41,35 @@ class ArrowInstrument(QWidget):
         painter.setPen(QPen(QColor("#000000"), 2))
         painter.drawArc(cx - r, cy - r, r * 2, r * 2, 0 * 16, 180 * 16)
         
-        # Новая цифровая шкала: деления от 0 до 1000 с шагом 200
-        ticks = [0, 200, 400, 600, 800, 1000]
+        # Новая цифровая шкала: деления от 0 до 1000 с шагом 20
         painter.setFont(QFont("Arial", 7))
         
-        for tick in ticks:
+        for tick in range (0, 1001, 20):
             tick_angle = 180.0 - (tick / self.max_val) * 180.0
             tick_rad = math.radians(tick_angle)
+            
+            #Длина засечек
+            if tick % 200 == 0:
+                tick_len = 12
+            elif tick % 100 == 0:
+                tick_len = 8
+            else: 
+                tick_len = 4
             
             # Засечки делений
             x_start = cx + r * math.cos(tick_rad)
             y_start = cy - r * math.sin(tick_rad)
-            x_end = cx + (r - 8) * math.cos(tick_rad)
-            y_end = cy - (r - 8) * math.sin(tick_rad)
+            x_end = cx + (r - tick_len) * math.cos(tick_rad)
+            y_end = cy - (r - tick_len) * math.sin(tick_rad)
             
-            painter.setPen(QPen(QColor("#000000"), 1.5))
+            painter.setPen(QPen(QColor("#000000"), 1.5 if tick % 100 == 0 else 1.0))
             painter.drawLine(int(x_start), int(y_start), int(x_end), int(y_end))
             
             # Цифровые подписи
-            x_text = cx + (r - 20) * math.cos(tick_rad) - 10
-            y_text = cy - (r - 20) * math.sin(tick_rad) + 4
-            painter.drawText(int(x_text), int(y_text), str(tick))
+            if tick % 200 == 0:
+                x_text = cx + (r - 25) * math.cos(tick_rad) - 10
+                y_text = cy - (r - 25) * math.sin(tick_rad) + 4
+                painter.drawText(int(x_text), int(y_text), str(tick))
             
         # Стрелка
         angle_deg = 180.0 - (self.displayed_value / self.max_val) * 180.0
@@ -85,7 +93,7 @@ class ArrowInstrument(QWidget):
         painter.setFont(QFont("Courier New", 10, QFont.Weight.Bold))
         
         # Вывод формата с поддержкой значений до 1000
-        painter.drawText(cx - 36, cy + 32, f"{self.displayed_value:06.1f}")
+        painter.drawText(cx - 36, cy + 32, f"{self.displayed_value:0.1f}")
         
         # Метки прибора
         painter.setPen(QPen(QColor("#000000"), 1))

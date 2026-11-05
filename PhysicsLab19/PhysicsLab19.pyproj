@@ -11,6 +11,7 @@
     <OutputPath>.</OutputPath>
     <Name>PhysicsLab19</Name>
     <RootNamespace>PhysicsLab19</RootNamespace>
+    <InterpreterId>Global|PythonCore|3.13</InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -28,6 +29,9 @@
     <Compile Include="PhysicsLab19.py" />
     <Compile Include="rheostat_widget.py" />
     <Compile Include="solenoid_widget.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterpreterReference Include="Global|PythonCore|3.13" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
