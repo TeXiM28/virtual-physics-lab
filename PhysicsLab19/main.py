@@ -74,10 +74,21 @@ class VirtualLabStand(QMainWindow):
         
         self.table = QTableWidget(11, 3)
         self.table.setHorizontalHeaderLabels(["U_a, В", "I_c, А", "I_a, мкА (Ввод)"])
+                # --- Наполнение таблицы (Напряжение 80В фиксировано, I_c доступно для ввода) ---
         for i in range(11):
-            self.table.setItem(i, 0, QTableWidgetItem("30.0"))
-            self.table.setItem(i, 1, QTableWidgetItem(f"{i*0.15:.2f}"))
+            # 1. Задаем во все ячейки первого столбца значение 80.0
+            item_ua = QTableWidgetItem("80.0")
+            
+            # Блокируем ячейку первого столбца от ручного редактирования студентом
+            item_ua.setFlags(item_ua.flags() & ~Qt.ItemFlag.ItemIsEditable)
+            self.table.setItem(i, 0, item_ua)
+            
+            # 2. Второй столбец (I_c) и третий (I_a) оставляем пустыми для ручного ввода
+            self.table.setItem(i, 1, QTableWidgetItem(""))
+            self.table.setItem(i, 2, QTableWidgetItem(""))
+            
         notebook_layout.addWidget(self.table)
+
         
         self.fig = Figure(figsize=(4, 3), dpi=100)
         self.canvas = FigureCanvas(self.fig)
