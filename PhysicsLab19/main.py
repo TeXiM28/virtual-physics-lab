@@ -23,9 +23,19 @@ class VirtualLabStand(QMainWindow):
         self.setCentralWidget(main_splitter)
         
         
-        stand_widget = QWidget()
-        stand_widget.setStyleSheet("background-color: #2D1A14; border: 4px solid #1A0C00;") 
-        stand_layout = QVBoxLayout(stand_widget)
+        self.stand_widget = QWidget()
+        self.stand_widget.setStyleSheet("background-color: #2D1A14; border: 4px solid #1A0C00;") 
+        stand_layout = QVBoxLayout(self.stand_widget)
+
+        self.is_dark = True
+        self.btn_theme = QPushButton("☀️ Светлая тема")
+        self.btn_theme.setStyleSheet("background-color: #FFC107; color: black; font-weight: bold; padding: 5px;")
+        self.btn_theme.clicked.connect(self.toggle_theme)
+        
+        top_bar_layout = QHBoxLayout()
+        top_bar_layout.addWidget(self.btn_theme)
+        top_bar_layout.addStretch()
+        stand_layout.addLayout(top_bar_layout)
         
         keys_layout = QHBoxLayout()
         self.btn_fork = QPushButton("Вилка: ВЫКЛ (~220В)")
@@ -86,7 +96,7 @@ class VirtualLabStand(QMainWindow):
             "7. Нажмите кнопку обработки данных для расчета e/m по максимуму производной спада тока."
         )
         stand_layout.addWidget(self.manual_view)
-        main_splitter.addWidget(stand_widget)
+        main_splitter.addWidget(self.stand_widget)
         
         notebook_widget = QWidget()
         notebook_layout = QVBoxLayout(notebook_widget)
@@ -126,6 +136,36 @@ class VirtualLabStand(QMainWindow):
         
       
         main_splitter.setSizes([750, 500])
+
+    def toggle_theme(self):
+        self.is_dark = not self.is_dark
+        
+        if self.is_dark:
+            self.btn_theme.setText("☀️ Светлая тема")
+            self.stand_widget.setStyleSheet("background-color: #2D1A14; border: 4px solid #1A0C00;")
+            self.lbl_status.setStyleSheet("color: #FFCC80; font-style: italic; padding: 4px; font-weight: bold;")
+            self.manual_view.setStyleSheet("background-color: #21130F; color: #E0E0E0; border: 2px solid #5D4037;")
+            self.setStyleSheet("")
+            self.table.setStyleSheet("")
+            self.result_view.setStyleSheet("")
+        else:
+            self.btn_theme.setText("🌙 Тёмная тема")
+            self.stand_widget.setStyleSheet("background-color: #F0F0F0; border: 4px solid #B0B0B0;")
+            self.lbl_status.setStyleSheet("color: #333333; font-style: italic; padding: 4px; font-weight: bold;")
+            self.manual_view.setStyleSheet("background-color: #FFFFFF; color: #000000; border: 1px solid #CCCCCC;")
+
+            self.setStyleSheet("""
+                QWidget { background-color: #FFFFFF; color: #000000; }
+                QTableWidget { background-color: #FFFFFF; color: #000000; gridline-color: #CCCCCC; }
+                QHeaderView::section { background-color: #F0F0F0; color: #000000; }
+                QTextEdit { background-color: #FFFFFF; color: #000000; }
+            """)
+            
+        self.ammeter_anode.set_theme(self.is_dark)
+        self.rheostat_ic.set_theme(self.is_dark)
+        self.rheostat_ua.set_theme(self.is_dark)
+        self.multimeter_ic.set_theme(self.is_dark)
+        self.voltmeter_anode.set_theme(self.is_dark)
 
     def sync_simulation(self):
         style_on = "background-color: #2ECC71; color: white; font-weight: bold; padding: 8px; border: 1px solid #000;"

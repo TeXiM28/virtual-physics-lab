@@ -15,11 +15,19 @@ class VirtualRheostat(QWidget):
         self.value = start_val
         self.setMinimumSize(120, 260)
         self.is_dragging = False
+        self.is_dark = True 
+    def set_theme(self, is_dark):
+        self.is_dark = is_dark
+        self.update()
 
     def setValue(self, val):
         self.value = max(self.min_val, min(val, self.max_val))
         self.update()
         self.valueChanged.emit(self.value)
+
+    def set_theme(self, is_dark):
+        self.is_dark = is_dark
+        self.update()
 
     def paintEvent(self, event):
         painter = QPainter(self)
@@ -59,11 +67,11 @@ class VirtualRheostat(QWidget):
         painter.drawEllipse(self.width() // 2 - 6, slider_y - 6, 12, 12)
 
         
-        painter.setPen(QPen(QColor("#FFFFFF")))
+        text_color = QColor("#FFFFFF") if self.is_dark else QColor("#000000")
+        painter.setPen(QPen(text_color))
         painter.setFont(QFont("Arial", 9, QFont.Weight.Bold))
         painter.drawText(10, 20, self.name)
         
-       
         painter.setFont(QFont("Arial", 8))
         painter.drawText(10, self.height() - 15, f"Знач: {self.value}")
 

@@ -13,6 +13,11 @@ class ArrowInstrument(QWidget):
         self.real_value = 0.0          
         self.displayed_value = 0.0     
         self.setMinimumSize(180, 180)
+        self.is_dark = True
+
+    def set_theme(self, is_dark):
+        self.is_dark = is_dark
+        self.update()
         
     def set_value(self, val):
         self.real_value = max(0.0, min(val, self.max_val))
@@ -28,26 +33,26 @@ class ArrowInstrument(QWidget):
         painter = QPainter(self)
         painter.setRenderHint(QPainter.RenderHint.Antialiasing)
         
+        body_color = QColor("#1E1E1E") if self.is_dark else QColor("#E8E8E8")
+        dial_color = QColor("#FFFFFF") if self.is_dark else QColor("#000000")
+        text_color = QColor("#FFFFFF") if self.is_dark else QColor("#000000")
         
-        painter.setBrush(QColor("#FFFFFF"))
-        painter.setPen(QPen(QColor("#2B2B2B"), 2))
+        painter.setBrush(body_color)
+        painter.setPen(QPen(QColor("#555555"), 2))
         painter.drawRect(5, 5, self.width() - 10, self.height() - 10)
         
         cx = self.width() // 2
         cy = self.height() - 65  
         r = int(min(self.width(), self.height()) * 0.38)
         
-        
-        painter.setPen(QPen(QColor("#000000"), 2))
+        painter.setPen(QPen(dial_color, 2))
         painter.drawArc(cx - r, cy - r, r * 2, r * 2, 0 * 16, 180 * 16)
         
-       
         painter.setFont(QFont("Arial", 7))
         
         for tick in range (0, 1001, 20):
             tick_angle = 180.0 - (tick / self.max_val) * 180.0
             tick_rad = math.radians(tick_angle)
-            
             
             if tick % 200 == 0:
                 tick_len = 12
@@ -56,22 +61,19 @@ class ArrowInstrument(QWidget):
             else: 
                 tick_len = 4
             
-            
             x_start = cx + r * math.cos(tick_rad)
             y_start = cy - r * math.sin(tick_rad)
             x_end = cx + (r - tick_len) * math.cos(tick_rad)
             y_end = cy - (r - tick_len) * math.sin(tick_rad)
             
-            painter.setPen(QPen(QColor("#000000"), 1.5 if tick % 100 == 0 else 1.0))
+            painter.setPen(QPen(dial_color, 1.5 if tick % 100 == 0 else 1.0))
             painter.drawLine(int(x_start), int(y_start), int(x_end), int(y_end))
-            
-            
+
             if tick % 200 == 0:
                 x_text = cx + (r - 25) * math.cos(tick_rad) - 10
                 y_text = cy - (r - 25) * math.sin(tick_rad) + 4
                 painter.drawText(int(x_text), int(y_text), str(tick))
             
-       
         angle_deg = 180.0 - (self.displayed_value / self.max_val) * 180.0
         angle_rad = math.radians(angle_deg)
         ax = cx + (r - 5) * math.cos(angle_rad)
@@ -84,19 +86,16 @@ class ArrowInstrument(QWidget):
         painter.setPen(QPen(QColor("#000000"), 1))
         painter.drawEllipse(cx - 4, cy - 4, 8, 8)
         
-        
         painter.setBrush(QColor("#2C3E50"))
         painter.drawRect(cx - 45, cy + 15, 90, 25)
         painter.setBrush(QColor("#A9DFBF"))
         painter.drawRect(cx - 41, cy + 18, 82, 19)
+
         painter.setPen(QPen(QColor("#000000"), 1))
         painter.setFont(QFont("Courier New", 10, QFont.Weight.Bold))
-        
-        
         painter.drawText(cx - 36, cy + 32, f"{self.displayed_value:0.1f}")
         
-        
-        painter.setPen(QPen(QColor("#000000"), 1))
+        painter.setPen(QPen(text_color, 1))
         painter.setFont(QFont("Arial", 9, QFont.Weight.Bold))
         painter.drawText(cx - 55, cy + 55, f"{self.name} ({self.unit})")
         

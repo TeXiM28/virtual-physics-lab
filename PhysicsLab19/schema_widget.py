@@ -12,14 +12,20 @@ class CircuitSchemaWidget(QWidget):
     def paintEvent(self, event):
         painter = QPainter(self)
         painter.setRenderHint(QPainter.RenderHint.Antialiasing)
+
         
         
-        painter.setBrush(QColor("#261612"))
+        bg_color = QColor("#261612") if self.is_dark else QColor("#FFFFFF")
+        line_color = QColor("#FFFFFF") if self.is_dark else QColor("#000000")
+        
+        painter.setBrush(bg_color)
         painter.setPen(QPen(QColor("#5D4037"), 2))
         painter.drawRect(5, 5, self.width() - 10, self.height() - 10)
         
-        painter.setPen(QPen(QColor("#FFFFFF"), 1.5))
+        painter.setPen(QPen(line_color, 1.5))
         painter.setFont(QFont("Arial", 8, QFont.Weight.Bold))
+     
+        painter.setPen(QPen(line_color, 1))
         
         
         painter.drawText(20, 45, "к выпрямителю")
@@ -126,3 +132,6 @@ class CircuitSchemaWidget(QWidget):
         painter.drawLine(517, 120, 600, 120) 
         painter.drawLine(517, 120, 517, 152)  
         painter.drawLine(420, 152, 517, 152) 
+    def set_theme(self, is_dark):
+        self.is_dark = is_dark
+        self.update()
