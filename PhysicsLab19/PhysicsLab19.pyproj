@@ -28,6 +28,7 @@
     <Compile Include="physics.py" />
     <Compile Include="PhysicsLab19.py" />
     <Compile Include="rheostat_widget.py" />
+    <Compile Include="schema_widget.py" />
     <Compile Include="solenoid_widget.py" />
   </ItemGroup>
   <ItemGroup>
